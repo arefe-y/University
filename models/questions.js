@@ -1,7 +1,6 @@
 const { DataTypes } = require("sequelize");
 
 const sequelize = require("../utils/database");
-const StudentAnswer=require('./studentAnswers');
 
 const Questions = sequelize.define("Questions", {
   id: {
@@ -15,7 +14,6 @@ const Questions = sequelize.define("Questions", {
   },
 });
 
-Questions.hasOne(StudentAnswer, { foreignKey: "answerId" });
-StudentAnswer.belongsTo(Questions, { foreignKey: "answerId" });
+
 
 module.exports = Questions;

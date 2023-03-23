@@ -1,0 +1,25 @@
+<h3 class="mt-2 text-center">پرسشنامه</h3>
+<div class="w-50 mx-auto"></div>
+<!-- includ validation error -->
+<%- include('../includes/validationErrors.ejs') %>
+<div class="d-flex align-items-center justify-content-center">
+  <form action="/dashboard/add-question" class="w-50" method="POST">
+    <div class="form-group">
+      <br>
+      <label for="fullname">سوال جدید را وارد نمایید :</label>
+      <input
+        type="text"
+        autofocus
+        class="form-control w50 mb-2"
+        placeholder="متن سوال را وارد نمایید"
+        name="question"
+        id="question"
+      />
+    </div>
+
+    <div class="row">
+      <input type="submit" value="ایجاد" class="btn btn-success m-2" />
+      <a href="/dashboard/admin-dash" class="btn btn-warning m-2">انصراف</a>
+    </div>
+  </form>
+</div>

@@ -7,6 +7,7 @@ const connect=require('connect');
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sequelize = require("./utils/database");
+const initModels=require('./models/initModel');
 
 //passport configuration
 require("./utils/passport");
@@ -35,8 +36,6 @@ app.use(session({
     }),
     resave:false,
     saveUninitialized:true,
-    // cookie:{maxAge: 24 * 60 * 60 * 1000}
-    // proxy:true
 }))
 //passport
 app.use(passport.initialize());
@@ -50,6 +49,7 @@ sequelize
   .sync()
   .then((result) => {
     console.log(result);
+    initModels
     app.listen(3000, () => console.log("Server is running..."));
   })
   .catch((err) => {

@@ -1,13 +1,14 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes,Sequelize } = require("sequelize");
 const bcrypt=require('bcryptjs');
 
 const sequelize = require("../utils/database");
 
 const User = sequelize.define("User", {
   id: {
-    type: DataTypes.UUID,
+    type: Sequelize.UUID,
     primaryKey: true,
-    allowNull: false,
+    // allowNull: false,
+    defaultValue:Sequelize.UUIDV4
   },
   fullname: {
     type: DataTypes.STRING,

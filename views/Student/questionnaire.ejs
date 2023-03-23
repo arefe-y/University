@@ -1,0 +1,25 @@
+<h3 class="mt-2 text-center">پرسشنامه</h3>
+<div class="w-50 mx-auto"></div>
+<!-- includ validation error -->
+<div class="d-flex align-items-center justify-content-center">
+  <form action="/dashboard/questionnaire" class="w-50" method="POST">
+
+    <% for( let i = 0; i < questions.length; i++ ) { %>
+      <div class="form-group">
+        <label> <%= questions[i].question  %></label>
+        <input
+          type="text"
+          autofocus
+          class="form-control w50 mb-2"
+          name=<%=questions[i].id  %>
+          id=<%=questions[i].id  %>
+        />
+      </div>
+    <% } %>
+
+    <div class="row">
+      <input type="submit" value="ثبت" class="btn btn-success m-2" />
+      <a href="/dashboard/student" class="btn btn-warning m-2">انصراف</a>
+    </div>
+  </form>
+</div>

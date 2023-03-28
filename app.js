@@ -3,7 +3,6 @@ const path = require("path");
 const expressLayout = require("express-ejs-layouts");
 const passport = require("passport");
 const session = require("express-session");
-const connect=require('connect');
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sequelize = require("./utils/database");

@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 const adminController = require("../controllers/adminController");
 const studentController = require("../controllers/studentController");
+const expertController=require('../controllers/expertsController');
 
 const router = new Router();
 
@@ -27,5 +28,13 @@ router.post(
   studentController.answers,
   studentController.assignment
 );
+
+
+
+//Experts Controller
+
+//GET /dashboard/dash-expert
+router.get("/dash-expert",expertController.getStudent)
+
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const User = require("../models/users");
-const Students=require('../models/students');
+const Students = require("../models/students");
 const Admin = require("../models/admins");
 
 const passport = require("passport");
@@ -35,10 +35,10 @@ exports.createUser = async (req, res) => {
       });
     }
 
-    await User.create({ fullname, email, password, role });
-    const reqUser=await User.findOne({where:{email}})
-    const reqUserId=reqUser.id
-    await Students.create({userId:reqUserId}) 
+    const newUser = await User.create({ fullname, email, password, role });
+    // console.log(newUser);
+    await Students.create({ userId: newUser.userId });
+    
     res.redirect("/users/login");
   } catch (err) {
     console.log(err);
@@ -66,9 +66,11 @@ exports.rememberMe = async (req, res, next) => {
   } else {
     req.session.cookie.expire = null;
   }
-  if (user.role ==1) {
-    res.redirect("/dashboard/admin-dash")
-  }else if(user.role==3){
-    res.redirect("/dashboard/questionnaire")
+  if (user.role == 1) {
+    res.redirect("/dashboard/admin-dash");
+  } else if (user.role == 3) {
+    res.redirect("/dashboard/questionnaire");
+  }else if(user.role==2){
+    res.redirect("/dashboard/dash-expert");
   }
 };

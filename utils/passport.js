@@ -28,15 +28,15 @@ passport.use(
 );
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user.userId);
 });
 
-passport.deserializeUser(function (id, done) {
-  User.findByPk(id).then(function(user){
+passport.deserializeUser(function (userId, done) {
+  User.findByPk(userId).then(function(user){
     if(user){
       done(null,user.get())
     }else{
-      done(user.errors,null)
+      done(user,null)
     }
   })
 });

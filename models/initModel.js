@@ -6,8 +6,9 @@ const Students = require("./students");
 const Users = require("./users");
 
 exports.initModels=()=>{
-    Users.hasOne(Students, { foreignKey: "userId" });
-    Students.belongsTo(Users, { foreignKey: "userId" });
+    Users.hasOne(Students, {as:"student", foreignKey: "userId" });
+    Students.belongsTo(Users, {as:"users", foreignKey: "userId" });
+
   
     Students.hasMany(StudentAnswers, { foreignKey: "studentId" });
     StudentAnswers.belongsTo(Students, { foreignKey: "studentId" });

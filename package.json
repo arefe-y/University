@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "build": "node ./utils/build.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arefeh Yousefi",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect": "^3.7.0",
     "connect-session-sequelize": "^7.1.5",
+    "cross-env": "^7.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",

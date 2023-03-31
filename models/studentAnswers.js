@@ -15,7 +15,7 @@ const StudentAnswers = sequelize.define("StudentAnswers", {
   },
   questionId:{
     type: Sequelize.UUID,
-    allowNull:false
+    allowNull:false,
   },
   studentId:{
     type: Sequelize.UUID,

@@ -2,12 +2,12 @@ const passport = require("passport");
 const { Strategy } = require("passport-local");
 const bcrypt = require("bcryptjs");
 
-const User = require("../models/users");
+const Users = require("../models/users");
 
 passport.use(
   new Strategy({ usernameField: "email" }, async (email, password, done) => {
     try {
-      const user = await User.findOne({  where: { email}  });
+      const user = await Users.findOne({  where: { email}  });
       if (!user) {
         return done(null, false, {
           message: "کاربری با این ایمیل ثبت نشده است",
@@ -32,7 +32,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (userId, done) {
-  User.findByPk(userId).then(function(user){
+  Users.findByPk(userId).then(function(user){
     if(user){
       done(null,user.get())
     }else{

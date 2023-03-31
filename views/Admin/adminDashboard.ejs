@@ -1,1 +1,27 @@
-<h2>This is admins dashboard</h2>
+<br>
+
+<% for( let i = 0; i < experts.length; i++ ) { %>
+  <h5>کارشناس <%=experts[i].fullname  %></h5>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">دانشجویان منتسب شده</th>
+      </tr>
+    </thead>
+    <% for( let y = 0; y < students.length; y++ ) { %>
+      <% if (experts[i].userId==students[y].Student.expertId) { %>
+        <% let index=1 %>
+        <tbody>
+          <tr>
+            <th scope="row"><%=index  %></th>
+            <td><%= students[y].fullname %></td>
+            <td><a href="/dashboard/student-answer/<%=students[y].userId%>">مشاهده پاسخنامه دانشجو</a></td>
+          </tr>
+          <% index++ %>
+        </tbody>
+      <% } %>
+    <% } %>
+  </table>
+
+<% } %>

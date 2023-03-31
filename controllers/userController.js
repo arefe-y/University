@@ -1,6 +1,5 @@
 const User = require("../models/users");
 const Students = require("../models/students");
-const Admin = require("../models/admins");
 
 const passport = require("passport");
 
@@ -15,6 +14,8 @@ exports.getLoginPage = (req, res) => {
   res.render("login", {
     pageTitle: "ورود به سایت",
     path: "/login",
+    message:req.flash("success_msg"),
+    error:req.flash("error")
   });
 };
 
@@ -36,9 +37,9 @@ exports.createUser = async (req, res) => {
     }
 
     const newUser = await User.create({ fullname, email, password, role });
-    // console.log(newUser);
     await Students.create({ userId: newUser.userId });
-    
+
+    req.flash("success_msg", "ثبت نام موفقیت آمیز بود");
     res.redirect("/users/login");
   } catch (err) {
     console.log(err);
@@ -70,7 +71,7 @@ exports.rememberMe = async (req, res, next) => {
     res.redirect("/dashboard/admin-dash");
   } else if (user.role == 3) {
     res.redirect("/dashboard/questionnaire");
-  }else if(user.role==2){
+  } else if (user.role == 2) {
     res.redirect("/dashboard/dash-expert");
   }
 };

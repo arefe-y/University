@@ -2,7 +2,9 @@ const { Router } = require("express");
 
 const adminController = require("../controllers/adminController");
 const studentController = require("../controllers/studentController");
-const expertController=require('../controllers/expertsController');
+const expertController = require("../controllers/expertsController");
+const { validate } = require("../middleware/questionValidation");
+const { validateAnswer } = require("../middleware/answerValidation");
 
 const router = new Router();
 
@@ -17,8 +19,11 @@ router.get("/add-question", adminController.getAddQuestion);
 //GET /dashboard/questionnaire
 router.get("/questionnaire", adminController.getQuestionPage);
 
+//GET /dashboard/student-answer
+router.get("/student-answer/:studentId",adminController.showStudentAnswer)
+
 //POST /dashboard/questions
-router.post("/add-question", adminController.Questions);
+router.post("/add-question", validate, adminController.Questions);
 
 //StudentController
 
@@ -29,12 +34,9 @@ router.post(
   studentController.assignment
 );
 
-
-
 //Experts Controller
 
 //GET /dashboard/dash-expert
-router.get("/dash-expert",expertController.getStudent)
-
+router.get("/dash-expert", expertController.getStudent);
 
 module.exports = router;

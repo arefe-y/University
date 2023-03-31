@@ -2,26 +2,9 @@ const Users = require("../models/users");
 const Admin = require("../models/admins");
 const Experts = require("../models/experts");
 const sequelize = require("./database");
-const initModels = require("../models/initModel");
+const { initModels } = require("../models/initModel");
 
-const express = require("express");
-const passport = require("passport");
-
-//passport configuration
-require("./passport");
-
-const app = express();
-
-//Parser
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-//passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-app.get("/", async (req, res) => {
+async function create() {
   try {
     const admin = await Users.create({
       fullname: "عارفه یوسفی",
@@ -49,14 +32,14 @@ app.get("/", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-});
+}
+create();
 
 sequelize
   .sync()
   .then((result) => {
     console.log(result);
-    initModels;
-    app.listen(3000, () => console.log("Server is running..."));
+    initModels();
   })
   .catch((err) => {
     console.log(err);

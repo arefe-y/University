@@ -1,7 +1,8 @@
 <h3 class="mt-2 text-center">پرسشنامه</h3>
-<div class="w-50 mx-auto"></div>
-<!-- includ validation error -->
-<%- include('../includes/validationErrors.ejs') %>
+<div class="w-50 mx-auto">
+  <%- include('../includes/validationErrors.ejs') %>
+</div>
+
 <div class="d-flex align-items-center justify-content-center">
   <form action="/dashboard/add-question" class="w-50" method="POST">
     <div class="form-group">
